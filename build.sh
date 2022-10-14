@@ -1,0 +1,1 @@
+docker build -t=martyd420/m1-lamp-mariadb:latest -f ./1804/Dockerfile .

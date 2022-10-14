@@ -1,9 +1,14 @@
-# ![Docker-LAMP][logo]
-Docker-LAMP for Apple Silicon MAC M1 is a set of docker images that include the arm64v8/ubuntu:18.04 baseimage, along with a LAMP stack ([Apache][apache], [MySQL][mysql] and multiple [PHP][php]) all in one handy package especially for Apple Silicon Mac M1 (ARM architecture).
+## WARNING !!!
+Mariadb does not start automatically, im working on a fix.
+
+---
+---
+
+# Apple M1 Docker LAMP with MariaDB
+Docker-LAMP for Apple Silicon MAC M1 is a set of docker images that include the arm64v8/ubuntu:18.04 baseimage, along with a LAMP stack (Apache, MariaDB and multiple PHP) all in one handy package especially for Apple Silicon Mac M1 (ARM architecture).
 
 With Ubuntu **18.04** images on the `latest` tags, Docker-LAMP is flexible enough to use with all of your LAMP projects.
 
-[![Docker Hub][shield-docker-hub]][info-docker-hub]
 [![License][shield-license]][info-license]
 
 ### Contents
@@ -43,13 +48,13 @@ Designed to be a single interface that just 'gets out of your way', and works on
 ## Image Versions
 The table below shows the PHP, MySQL and Apache versions that come with it.
 
-Component | `latest`
+Component | Version
 ---|---
-[Apache][apache] | `2.4.29`
-[MySQL][mysql] | `5.7.34`
-[PHP][php] | `5.6`, `7.4`, `8.0`
-[phpMyAdmin][phpmyadmin] | `5.1.1`
-[ionCube][ioncube] | `10.2`
+apache | `2.4.29`
+MariaDB | `10.1`
+PHP | `5.6`, `7.4`, `8.0`
+phpMyAdmin | `5.1.1`
+ionCube | `10.2`
 
 
 ## Using the image
