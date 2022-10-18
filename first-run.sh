@@ -1,1 +1,1 @@
-docker run -i -t -p "80:80" -v ${PWD}/app:/app -v ${PWD}/mysql_data:/var/lib/mysql martyd420/m1-lamp-mariadb:latest
+docker run -i -t -p "80:80" -v ${PWD}/app:/app -v ${PWD}/mysql:/var/lib/mysql martyd420/m1-lamp-mariadb:latest

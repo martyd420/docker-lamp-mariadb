@@ -114,7 +114,8 @@ RUN chmod 755 /*.sh
 ADD supporting_files/supervisord-apache2.conf /etc/supervisor/conf.d/supervisord-apache2.conf
 ADD supporting_files/supervisord-mysqld.conf /etc/supervisor/conf.d/supervisord-mysqld.conf
 ADD supporting_files/supervisord.conf /etc/supervisor/supervisord.conf
-ADD supporting_files/mysqld_innodb.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
+ADD supporting_files/mysqld_innodb.cnf /etc/mysql/conf.d/mysqld.cnf
+
 
 # Remove pre-installed database
 RUN rm -rf /var/lib/mysql
@@ -127,12 +128,6 @@ RUN wget -O /tmp/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/${PHP
 RUN tar xfvz /tmp/phpmyadmin.tar.gz -C /var/www
 RUN ln -s /var/www/phpMyAdmin-${PHPMYADMIN_VERSION}-all-languages /var/www/phpmyadmin
 RUN mv /var/www/phpmyadmin/config.sample.inc.php /var/www/phpmyadmin/config.inc.php
-
-# Add composer
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-    php composer-setup.php && \
-    php -r "unlink('composer-setup.php');" && \
-    mv composer.phar /usr/local/bin/composer
 
 ENV MYSQL_PASS:-$(pwgen -s 12 1)
 
@@ -149,13 +144,6 @@ ADD app/ /app
 ENV PHP_UPLOAD_MAX_FILESIZE 512M
 ENV PHP_POST_MAX_SIZE 520M
 ENV PHP_VERSION 8.0
-
-#install ioncube
-RUN wget 'https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_aarch64.tar.gz'
-RUN tar xzf ioncube_loaders_lin_aarch64.tar.gz -C /usr/local
-RUN rm -Rf ioncube_loaders_lin_aarch64.tar.gz
-
-
 
 VOLUME  ["/var/lib/mysql", "/app" ]
 

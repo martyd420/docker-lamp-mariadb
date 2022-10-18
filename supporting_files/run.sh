@@ -91,8 +91,8 @@ fi
 
 echo "Editing MySQL config"
 sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
-sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
-sed -i "s/user.*/user = www-data/" /etc/mysql/mysql.conf.d/mysqld.cnf
+sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/conf.d/mysql.cnf
+sed -i "s/user.*/user = www-data/" /etc/mysql/conf.d/mysql.cnf
 
 if [[ ! -d $VOLUME_HOME/mysql ]]; then
     echo "=> An empty or uninitialized MySQL volume is detected in $VOLUME_HOME"
@@ -121,7 +121,7 @@ a2enconf php7.4-fpm
 service php5.6-fpm start
 service php8.0-fpm start
 service php7.4-fpm start
-update-alternatives --set php /usr/bin/php7.4
+update-alternatives --set php /usr/bin/php8.0
 service apache2 restart
 
 echo "Starting supervisord"

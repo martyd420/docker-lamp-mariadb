@@ -14,10 +14,13 @@ PASS=${MYSQL_ADMIN_PASS:-$(pwgen -s 12 1)}
 _word=$( [ ${MYSQL_ADMIN_PASS} ] && echo "preset" || echo "random" )
 echo "=> Creating MySQL admin user with ${_word} password"
 
+mysql -uroot -e "FLUSH PRIVILEGES"
+
 mysql -uroot -e "CREATE USER 'admin'@'%' IDENTIFIED BY '$PASS'"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
 
-mysql -uroot -e " GRANT ALL PRIVILEGES ON phpmyadmin.* TO  'pma'@'localhost' IDENTIFIED BY ''"
+mysql -uroot -e "FLUSH PRIVILEGES"
+
 
 CREATE_MYSQL_USER=false
 
